@@ -1,0 +1,25 @@
+{
+  "name": "MOONKEYBET",
+  "homepage": "https://github.com/moonkeybet/moonkeybet-frontend",
+  "authors": [
+    "MOONKEYBET"
+  ],
+  "description": "Moon Key Bet Website",
+  "main": "dist/index.js",
+  "keywords": [
+    "material",
+    "design",
+    "material-ui",
+    "google",
+    "twitter"
+  ],
+  "license": "MOONKEYBET",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "private": true
+}
