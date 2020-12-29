@@ -1,7 +1,7 @@
 import axios from "axios";
 
-export default function register(username, password, callback){
-    axios.post("http://localhost:8080/register", {
+export default function authenticate(username, password, callback){
+    axios.post("http://localhost:8080/authenticate", {
         username,
         password
       })
