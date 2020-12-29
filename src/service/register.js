@@ -1,7 +1,9 @@
 import axios from "axios";
 
+import serverUrl from "constants.js"
+
 export default function register(username, password, callback){
-    axios.post("http://0.0.0.0:8080/register", JSON.stringify({
+    axios.post(serverUrl+"/register", JSON.stringify({
         username,
         password
       }),{
