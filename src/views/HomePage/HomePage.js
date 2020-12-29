@@ -54,16 +54,24 @@ export default function HomePage(props) {
                 Every time you win a match, you get your currency reward in real time!
               </h4>
               <br />
-              <Link to="/register">
+              <Link to="/register" style={{marginRight:"250px"}}>
                 <Button
                   color="danger"
                   size="lg"
                   rel="noopener noreferrer"
                 >
-                  Register Now
+                  Register 
                 </Button>
               </Link>
-            
+              <Link to="/login">
+                <Button
+                  color="danger"
+                  size="lg"
+                  rel="noopener noreferrer"
+                >
+                  Login
+                </Button>
+              </Link>
             </GridItem>
           </GridContainer>
         </div>
