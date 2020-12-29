@@ -34,7 +34,7 @@ function callback(){
 }
 
 function auth(){
-  auth(username,password,callback)
+  authenticate(username,password,callback)
 }
 
 function changeUsername(event){
