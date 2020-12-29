@@ -9,7 +9,7 @@ export default function authenticate(username, password, callback){
         mode:"cors",
         Accept: 'application/json',
         headers:{
-          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+          'Content-Type': 'application/json'
         }
       })
       .then((response) => {
