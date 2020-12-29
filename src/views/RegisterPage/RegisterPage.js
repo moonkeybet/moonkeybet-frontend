@@ -4,7 +4,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
-import Email from "@material-ui/icons/Email";
 import People from "@material-ui/icons/People";
 // core components
 import Header from "components/Header/Header.js";
@@ -19,10 +18,10 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardFooter from "components/Card/CardFooter.js";
 import CustomInput from "components/CustomInput/CustomInput.js";
 
-import styles from "assets/jss/material-kit-react/views/loginPage.js";
+import styles from "assets/jss/material-kit-react/views/registerPage.js";
 
 import image from "assets/img/bg7.jpg";
-import authenticate from "../../service/authenticate.js";
+import register from "../../service/register.js";
 
 const useStyles = makeStyles(styles);
 
@@ -33,8 +32,8 @@ function callback(){
   console.log("this is a callback :)")
 }
 
-function auth(){
-  auth(username,password,callback)
+function registerAccount(){
+  register(username,password,callback)
 }
 
 function changeUsername(event){
@@ -45,7 +44,7 @@ function changePassword(event){
   password = event.target.value
 }
 
-export default function LoginPage(props) {
+export default function RegisterPage(props) {
   const [cardAnimaton, setCardAnimation] = React.useState("cardHidden");
   setTimeout(function() {
     setCardAnimation("");
@@ -57,7 +56,7 @@ export default function LoginPage(props) {
       <Header
         absolute
         color="transparent"
-        brand="Material Kit React"
+        brand="Moon Key Bet"
         rightLinks={<HeaderLinks />}
         {...rest}
       />
@@ -75,11 +74,13 @@ export default function LoginPage(props) {
               <Card className={classes[cardAnimaton]}>
                 <form className={classes.form}>
                   <CardHeader color="primary" className={classes.cardHeader}>
-                    <h4>Login</h4>
+                    <h4>Create your account</h4>
                   </CardHeader>
+                  <p className={classes.divider}>Make sure to chose a unique username!</p>
                   <CardBody>
                     <CustomInput
-                      labelText="Username"
+                      
+                      labelText="Unique username"
                       id="first"
                       formControlProps={{
                         fullWidth: true
@@ -90,7 +91,8 @@ export default function LoginPage(props) {
                           <InputAdornment position="end">
                             <People className={classes.inputIconsColor} />
                           </InputAdornment>
-                        )
+                        ),
+                        onChange:changeUsername
                       }}
                     />
                     <CustomInput
@@ -108,12 +110,13 @@ export default function LoginPage(props) {
                             </Icon>
                           </InputAdornment>
                         ),
-                        autoComplete: "off"
+                        autoComplete: "off",
+                        onChange:changePassword
                       }}
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button simple color="primary" size="lg">
+                    <Button onClick={registerAccount} simple color="primary" size="lg">
                       Get started
                     </Button>
                   </CardFooter>
