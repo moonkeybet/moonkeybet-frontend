@@ -14,6 +14,7 @@ import GridItem from "components/Grid/GridItem.js";
 import Button from "components/CustomButtons/Button.js";
 import HeaderLinks from "components/Header/HeaderLinks.js";
 import Parallax from "components/Parallax/Parallax.js";
+import { Link } from "react-router-dom";
 
 import styles from "assets/jss/material-kit-react/views/homePage.js";
 
@@ -38,7 +39,7 @@ export default function HomePage(props) {
         rightLinks={<HeaderLinks />}
         fixed
         changeColorOnScroll={{
-          height: 400,
+          height: 50,
           color: "white"
         }}
         {...rest}
@@ -47,33 +48,32 @@ export default function HomePage(props) {
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
-              <h1 className={classes.title}>Your Story Starts With Us.</h1>
+              <h1 className={classes.title}>Test your skills against other players around the world !</h1>
               <h4>
-                Every landing page needs a small description after the big bold
-                title, that{"'"}s why we added this text here. Add here all the
-                information that can make you or your product create the first
-                impression.
+                Play games while betting Bitcoin to rise in the Moon Key Bet ranking.
+                Every time you win a match, you get your currency reward in real time!
               </h4>
               <br />
-              <Button
-                color="danger"
-                size="lg"
-                href=""
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <i className="fas fa-play" />
-                Watch video
-              </Button>
+              <Link to="/register">
+                <Button
+                  color="danger"
+                  size="lg"
+                  rel="noopener noreferrer"
+                >
+                  Register Now
+                </Button>
+              </Link>
+            
             </GridItem>
           </GridContainer>
         </div>
       </Parallax>
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <div className={classes.container}>
-          <ProductSection />
+        <div style={{height:"300px"}} className={classes.container}>
+          <p style={{color:"grey"}}>* available game rooms to be inserted here *</p>
+          {/*<ProductSection />
           <TeamSection />
-          <WorkSection />
+          <WorkSection />*/}
         </div>
       </div>
       <Footer />
