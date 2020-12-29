@@ -1,5 +1,5 @@
 import axios from "axios";
-import serverUrl from "constants.js"
+import serverUrl from "./constants.js"
 
 export default function authenticate(username, password, callback){
     axios.post(serverUrl+"authenticate", {
