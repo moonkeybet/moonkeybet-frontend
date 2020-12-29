@@ -9,6 +9,7 @@ export default function authenticate(username, password, callback){
         mode:"cors",
         Accept: 'application/json',
         headers:{
+          'Access-Control-Allow-Origin' : '*',
           'Content-Type': 'application/json'
         }
       })
