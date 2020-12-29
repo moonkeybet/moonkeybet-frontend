@@ -56,7 +56,7 @@ export default function RegisterPage(props) {
       <Header
         absolute
         color="transparent"
-        brand="Moon Key Bet"
+        brand="MoonKey Bet"
         rightLinks={<HeaderLinks />}
         {...rest}
       />

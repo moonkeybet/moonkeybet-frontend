@@ -33,7 +33,7 @@ export default function Footer(props) {
                 href="/"
                 className={classes.block}
               >
-                Moon Key Bet
+                MoonKey Bet
               </a>
             </ListItem>
           </List>
