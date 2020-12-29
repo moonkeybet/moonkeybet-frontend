@@ -22,7 +22,8 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.1",
     "react-slick": "0.26.1",
-    "react-swipeable-views": "0.13.9"
+    "react-swipeable-views": "0.13.9",
+    "serve": "^11.3.2"
   },
   "devDependencies": {
     "@babel/cli": "7.10.1",
@@ -41,7 +42,7 @@
   },
   "scripts": {
     "dev": "react-scripts start",
-"start": "serve -s build",
+    "start": "serve -s build",
     "build": "react-scripts build && gulp licenses",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
