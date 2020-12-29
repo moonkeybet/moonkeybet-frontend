@@ -113,7 +113,7 @@ export default function LoginPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button simple color="primary" size="lg">
+                    <Button onClick={auth} simple color="primary" size="lg">
                       Get started
                     </Button>
                   </CardFooter>
