@@ -10,7 +10,7 @@ export default function register(username, password, callback){
         mode:"cors",
         Accept: 'application/json',
         headers:{
-          'Content-Type': ' application/json'
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
         }
       })
       .then((response) => {

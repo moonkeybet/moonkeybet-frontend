@@ -3,15 +3,15 @@ import serverUrl from "./constants.js"
 
 export default function authenticate(username, password, callback){
     axios.post(serverUrl+"authenticate", JSON.stringify({
-      username,
-      password
-    }),{
-      mode:"cors",
-      Accept: 'application/json',
-      headers:{
-        'Content-Type': ' application/json'
-      }
-    })
+        username,
+        password
+      }),{
+        mode:"cors",
+        Accept: 'application/json',
+        headers:{
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+        }
+      })
       .then((response) => {
         console.log(response);
         callback()
