@@ -90,7 +90,8 @@ export default function LoginPage(props) {
                           <InputAdornment position="end">
                             <People className={classes.inputIconsColor} />
                           </InputAdornment>
-                        )
+                        ),
+                        onChange:changeUsername
                       }}
                     />
                     <CustomInput
@@ -108,7 +109,8 @@ export default function LoginPage(props) {
                             </Icon>
                           </InputAdornment>
                         ),
-                        autoComplete: "off"
+                        autoComplete: "off",
+                        onChange:changePassword
                       }}
                     />
                   </CardBody>
