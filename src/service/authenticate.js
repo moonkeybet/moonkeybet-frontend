@@ -1,5 +1,6 @@
 import axios from "axios";
-import serverUrl from "./constants.js"
+import serverUrl from "./constants.js";
+import AppState from "./appState.js";
 
 export default function authenticate(username, password, callback){
     axios.post(serverUrl+"authenticate", JSON.stringify({
@@ -14,9 +15,10 @@ export default function authenticate(username, password, callback){
         }
       })
       .then((response) => {
-        console.log(response);
+        AppState.setUserState({
+          userState:{username}
+        })
+        AppState.setSessionToken(response.data)
         callback()
-      }, (error) => {
-        console.log(error);
       });
 }

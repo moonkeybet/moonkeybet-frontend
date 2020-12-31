@@ -13,8 +13,12 @@ import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
+import MenuItem from '@material-ui/core/MenuItem';
+
 // core components
 import styles from "assets/jss/material-kit-react/components/headerStyle.js";
+import AppState from "../../service/appState.js";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
@@ -61,6 +65,43 @@ export default function Header(props) {
     [classes.fixed]: fixed
   });
   const brandComponent = <Button className={classes.title}>{brand}</Button>;
+  let menuItems = []
+  let menuItemsResponsive = []
+  let userState = AppState.getUserState()
+  let sessionToken = AppState.getSessionToken()
+
+  function getLoggedInComponents(){
+    return(
+      <>
+        <div style={{float:"left",marginRight:"15px"}}>
+          {userState.username}
+        </div>
+        <Link to="/logout" >
+          Logout 
+        </Link> 
+      </>
+    )
+  }
+
+  function getLoggedInComponentsResponsive(){
+    return(
+      <>
+        <div style={{float:"left",marginRight:"15px"}}>
+          {userState.username}
+        </div>
+        <br />
+        <Link to="/logout" >
+          Logout 
+        </Link> 
+      </>
+    )
+  }
+
+  if(userState != null && sessionToken != null){
+    menuItems.push(getLoggedInComponents())
+    menuItemsResponsive.push(getLoggedInComponentsResponsive())
+  }
+
   return (
     <AppBar className={appBarClasses}>
       <Toolbar className={classes.container}>
@@ -76,6 +117,7 @@ export default function Header(props) {
         </div>
         <Hidden smDown implementation="css">
           {rightLinks}
+          {menuItems}
         </Hidden>
         <Hidden mdUp>
           <IconButton
@@ -100,7 +142,9 @@ export default function Header(props) {
           <div className={classes.appResponsive}>
             {leftLinks}
             {rightLinks}
+            {menuItemsResponsive}
           </div>
+          
         </Drawer>
       </Hidden>
     </AppBar>
