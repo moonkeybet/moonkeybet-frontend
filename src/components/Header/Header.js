@@ -119,7 +119,7 @@ export default function Header(props) {
           {rightLinks}
           {menuItems}
         </Hidden>
-        <Hidden mdUp>
+        {userState != null ?  <Hidden mdUp>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -127,7 +127,8 @@ export default function Header(props) {
           >
             <Menu />
           </IconButton>
-        </Hidden>
+        </Hidden>: null}
+       
       </Toolbar>
       <Hidden mdUp implementation="js">
         <Drawer

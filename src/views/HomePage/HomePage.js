@@ -39,13 +39,13 @@ let introText = <><div className={classes.container}>
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={6}>
                     <h1 className={classes.title}>Test your skills against other players around the world !</h1>
-                    <h4>
+                    <h4 style={{marginBottom:"-25px"}}>
                       Play games while betting Bitcoin to rise in the Moon Key Bet ranking.
                       Every time you win a match, you get your currency reward in real time!
                     </h4>
                     <br />
                     {userState===null? <>
-                    <Link to="/register" style={{marginRight:"250px"}}>
+                    <Link to="/register" style={{marginRight:"90px", float:"left"}}>
                       <Button
                         color="danger"
                         size="lg"
@@ -54,7 +54,7 @@ let introText = <><div className={classes.container}>
                         Register 
                       </Button>
                     </Link>
-                    <Link to="/login">
+                    <Link to="/login" style={{float:"left"}}>
                       <Button
                         color="danger"
                         size="lg"
