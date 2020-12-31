@@ -23,6 +23,7 @@ import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "assets/img/bg7.jpg";
 import authenticate from "../../service/authenticate.js";
+import appState from "service/appState.js";
 
 const useStyles = makeStyles(styles);
 
@@ -30,7 +31,7 @@ let username = ""
 let password = ""
 
 function callback(){
-  console.log("this is a callback :)")
+  window.location.href = "/"
 }
 
 function auth(){

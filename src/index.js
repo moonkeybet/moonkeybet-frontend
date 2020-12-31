@@ -10,6 +10,8 @@ import Components from "views/Components/Components.js";
 import LandingPage from "views/LandingPage/LandingPage.js";
 import ProfilePage from "views/ProfilePage/ProfilePage.js";
 import LoginPage from "views/LoginPage/LoginPage.js";
+import LogoutPage from "views/LogoutPage/LogoutPage.js";
+
 import RegisterPage from "views/RegisterPage/RegisterPage.js";
 import HomePage from "views/HomePage/HomePage.js";
 
@@ -21,6 +23,8 @@ ReactDOM.render(
       <Route path="/landing-page" component={LandingPage} />
       <Route path="/profile-page" component={ProfilePage} />
       <Route path="/login" component={LoginPage} />
+      <Route path="/logout" component={LogoutPage} />
+
       <Route path="/register" component={RegisterPage} />
       <Route path="/compoenents" component={Components} />
       <Route path="/" component={HomePage} />

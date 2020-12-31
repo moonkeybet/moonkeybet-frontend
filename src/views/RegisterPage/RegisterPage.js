@@ -29,7 +29,7 @@ let username = ""
 let password = ""
 
 function callback(){
-  console.log("this is a callback :)")
+  window.location.href = "/"
 }
 
 function registerAccount(){
