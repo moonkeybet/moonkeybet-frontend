@@ -23,7 +23,6 @@ import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 import image from "assets/img/bg7.jpg";
 import authenticate from "../../service/authenticate.js";
-import appState from "service/appState.js";
 
 const useStyles = makeStyles(styles);
 
@@ -31,7 +30,7 @@ let username = ""
 let password = ""
 
 function callback(){
-  window.location.href = "/"
+  window.location.href = "/sucessLogin"
 }
 
 function auth(){
@@ -116,7 +115,7 @@ export default function LoginPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button onClick={auth} simple color="primary" size="lg">
+                    <Button  onClick={auth} simple color="primary" size="lg">
                       Get started
                     </Button>
                   </CardFooter>
