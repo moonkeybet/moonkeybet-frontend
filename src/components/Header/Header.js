@@ -23,6 +23,7 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles(styles);
 
 export default function Header(props) {
+  AppState.updateUserDetails()
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {
@@ -64,19 +65,26 @@ export default function Header(props) {
     [classes.absolute]: absolute,
     [classes.fixed]: fixed
   });
-  const brandComponent = <Button className={classes.title}>{brand}</Button>;
+  const brandComponent = <Button href="/" className={classes.title}>{brand}</Button>;
   let menuItems = []
   let menuItemsResponsive = []
   let userState = AppState.getUserState()
   let sessionToken = AppState.getSessionToken()
+  let accountBalance = 0 
+  if( AppState.getUserDetails() != null){
+    accountBalance = AppState.getUserDetails().balance
+  }
 
   function getLoggedInComponents(){
     return(
       <>
-        <div style={{float:"left",marginRight:"15px"}}>
-          {userState.username}
+       <div style={{float:"left",marginRight:"15px"}}>
+         {accountBalance} MOONKEY coins
         </div>
-        <Link to="/logout" >
+        <div style={{float:"left",marginRight:"15px"}}>
+          <Link to="/profile" style={{fontWeight:"bold"}} > My profile</Link>
+        </div>
+        <Link to="/logout"  style={{fontWeight:"bold"}}>
           Logout 
         </Link> 
       </>
@@ -86,11 +94,14 @@ export default function Header(props) {
   function getLoggedInComponentsResponsive(){
     return(
       <>
+        <div style={{float:"left",marginRight:"15px",fontWeight:"bold"}}>
+         {accountBalance} MOONKEY coins
+        </div><br/><br/>
         <div style={{float:"left",marginRight:"15px"}}>
-          {userState.username}
+          <Link to="/profile"  style={{fontWeight:"bold"}} >My profile</Link>
         </div>
-        <br />
-        <Link to="/logout" >
+        <br /><br/>
+        <Link to="/logout"  style={{fontWeight:"bold"}}>
           Logout 
         </Link> 
       </>

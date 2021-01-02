@@ -20,5 +20,7 @@ export default function authenticate(username, password, callback){
         })
         AppState.setSessionToken(response.data)
         callback()
+      }).catch(()=>{
+        alert("Error. Please try again with different credentials")
       });
 }

@@ -33,7 +33,9 @@ export default function HomePage(props) {
   const classes = useStyles();
   const { ...rest } = props;
 
+  AppState.updateUserDetails();
   let userState = AppState.getUserState();
+  
 
 let introText = <><div className={classes.container}>
                 <GridContainer>

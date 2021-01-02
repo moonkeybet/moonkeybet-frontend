@@ -116,7 +116,7 @@ export default function RegisterPage(props) {
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button onClick={registerAccount} simple color="primary" size="lg">
+                    <Button  onClick={registerAccount} simple color="primary" size="lg">
                       Get started
                     </Button>
                   </CardFooter>

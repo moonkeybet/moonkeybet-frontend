@@ -1,3 +1,5 @@
+import getUserData from "./userData.js";
+
 class AppState {
 
     setUserState(newUserState){
@@ -24,5 +26,24 @@ class AppState {
       localStorage.clear();
     }
 
+    updateUserDetails(){
+      getUserData()
+    }
+
+    setPublicKey(publicKey){
+      localStorage.setItem('publicKey',publicKey);
+    }
+    
+    getPublicKey(){
+      return  localStorage.getItem('publicKey');
+    }
+
+    setUserDetails(userDetails){
+      localStorage.setItem('userDetails', JSON.stringify(userDetails));
+    }
+
+    getUserDetails(){
+      return  JSON.parse(localStorage.getItem('userDetails'));
+    }
 }
 export default (new AppState());
