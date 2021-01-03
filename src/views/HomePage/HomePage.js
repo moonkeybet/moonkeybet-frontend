@@ -61,9 +61,13 @@ export default function HomePage(props) {
   let userState = AppState.getUserState();
   let userDetails = AppState.getUserDetails();
   let matchData = AppState.getAvailableMatches()
-  matchData.sort(function(a, b) {
-    return parseFloat(a.id) - parseFloat(b.id);
-  });
+  if(matchData != null){
+    matchData.sort(function(a, b) {
+      return parseFloat(a.id) - parseFloat(b.id);
+    });
+  }
+
+  
   function getButtonGenerator(){
     let buttons =[]
     let balance = 0
