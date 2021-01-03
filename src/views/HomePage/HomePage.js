@@ -28,26 +28,42 @@ const useStyles = makeStyles(styles);
 
 export default function HomePage(props) {
 
-  function getButtonGenerator(){
-    let buttons =[]
-    for(let counter=0;counter<bettingAmountArray.length;++counter){
-      let plural = "S"
-      let textString = `${bettingAmountArray[counter]} MOONKEY COIN`
-      if(counter >0){
-        textString+=plural
-      }
-      let button = <Button key={counter} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>(0)</b></Button>
-      buttons.push(button)
-    }
-    return buttons
-  }
 
   const classes = useStyles();
   const { ...rest } = props;
 
   AppState.updateUserDetails();
   let userState = AppState.getUserState();
+  let userDetails = AppState.getUserDetails();
 
+
+  function getButtonGenerator(){
+    let buttons =[]
+    let balance = 0
+    if(userDetails!= null && userDetails.balance>0){
+      balance = userDetails.balance
+    }
+
+    for(let counter=0;counter<bettingAmountArray.length;++counter){
+      let plural = "S"
+      let textString = `${bettingAmountArray[counter]} MOONKEY COIN`
+      let disabled = true
+      let color = null
+      if(counter >0){
+        textString+=plural
+      }
+
+      if(balance>=bettingAmountArray[counter]){
+        disabled = false
+        color = "danger"
+      }
+      let button = <Button color={color} key={counter} disabled={disabled} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>(0)</b></Button>
+
+
+      buttons.push(button)
+    }
+    return buttons
+  }
 
 let introText = <><div className={classes.container}>
                 <GridContainer>
@@ -115,7 +131,7 @@ let introText = <><div className={classes.container}>
           <br/>
           <p style={{color:"grey"}}>
             In order to play a match against another player, simply click on any of the above buttons to join a match. 
-            The number inside the <i>parenthesis ()</i>  indicates how many players are currently waiting for an opponent 
+            The number inside the <i>parenthesis ( ) </i>  shows how many players are currently waiting for an opponent 
             for the given <b>bet amount</b>.
           </p>
         </div>
