@@ -67,6 +67,7 @@ export default function HomePage(props) {
     });
   }
 
+  
   function getButtonGenerator(){
     let buttons =[]
     let balance = 0
