@@ -1,4 +1,6 @@
 import getUserData from "./userData.js";
+import getUpdateMatchData from "./matchData.js";
+
 
 class AppState {
 
@@ -28,6 +30,10 @@ class AppState {
 
     updateUserDetails(){
       getUserData()
+    }
+
+    updateMatchData(){
+      getUpdateMatchData()
     }
 
     setPublicKey(publicKey){

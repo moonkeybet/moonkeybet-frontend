@@ -18,7 +18,7 @@ export default function findAvailableMatches(){
     .then((response) => {
       localBettingAmountArray.push(response.data)
       AppState.setAvailableMatches(localBettingAmountArray)
-      console.log("@@@ this is available matches response : "+ response)
+      // console.log("@@@ this is available matches response : "+ response)
     })
   }
 }

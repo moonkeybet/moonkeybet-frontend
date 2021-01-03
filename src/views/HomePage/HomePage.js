@@ -27,7 +27,7 @@ const useStyles = makeStyles(styles);
 
 
 export default function HomePage(props) {
-
+  AppState.updateMatchData()
 
   const classes = useStyles();
   const { ...rest } = props;
@@ -35,8 +35,8 @@ export default function HomePage(props) {
   AppState.updateUserDetails();
   let userState = AppState.getUserState();
   let userDetails = AppState.getUserDetails();
-
-
+  let matchData = AppState.getAvailableMatches()
+  // console.log("@@@ match data from homepage",matchData)
   function getButtonGenerator(){
     let buttons =[]
     let balance = 0
