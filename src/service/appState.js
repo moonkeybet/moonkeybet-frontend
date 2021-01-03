@@ -45,5 +45,14 @@ class AppState {
     getUserDetails(){
       return  JSON.parse(localStorage.getItem('userDetails'));
     }
+    
+    setAvailableMatches(bettingAmountArray){
+      localStorage.setItem('bettingAmountArray', JSON.stringify(bettingAmountArray));
+    }
+
+    getAvailableMatches(){
+      return  JSON.parse(localStorage.getItem('bettingAmountArray'));
+    }
+    
 }
 export default (new AppState());

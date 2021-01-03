@@ -13,7 +13,6 @@ import Hidden from "@material-ui/core/Hidden";
 import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
-import MenuItem from '@material-ui/core/MenuItem';
 
 // core components
 import styles from "assets/jss/material-kit-react/components/headerStyle.js";
@@ -97,6 +96,10 @@ export default function Header(props) {
         <div style={{float:"left",marginRight:"15px",fontWeight:"bold"}}>
          {accountBalance} MOONKEY coins
         </div><br/><br/>
+        <div style={{float:"left",marginRight:"15px"}}>
+          <Link to="/"  style={{fontWeight:"bold"}} >Homepage</Link>
+        </div>
+        <br /><br/>
         <div style={{float:"left",marginRight:"15px"}}>
           <Link to="/profile"  style={{fontWeight:"bold"}} >My profile</Link>
         </div>

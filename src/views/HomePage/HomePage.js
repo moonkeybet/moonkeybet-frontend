@@ -18,24 +18,36 @@ import { Link } from "react-router-dom";
 
 import styles from "assets/jss/material-kit-react/views/homePage.js";
 
-// Sections for this page
-import ProductSection from "./Sections/ProductSection.js";
-import TeamSection from "./Sections/TeamSection.js";
-import WorkSection from "./Sections/WorkSection.js";
-
 import AppState from "../../service/appState.js";
+import bettingAmountArray from "../../service/betAmountsConstant.js";
 
 const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 
+
 export default function HomePage(props) {
+
+  function getButtonGenerator(){
+    let buttons =[]
+    for(let counter=0;counter<bettingAmountArray.length;++counter){
+      let plural = "S"
+      let textString = `${bettingAmountArray[counter]} MOONKEY COIN`
+      if(counter >0){
+        textString+=plural
+      }
+      let button = <Button key={counter} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>(0)</b></Button>
+      buttons.push(button)
+    }
+    return buttons
+  }
+
   const classes = useStyles();
   const { ...rest } = props;
 
   AppState.updateUserDetails();
   let userState = AppState.getUserState();
-  
+
 
 let introText = <><div className={classes.container}>
                 <GridContainer>
@@ -94,11 +106,18 @@ let introText = <><div className={classes.container}>
             </Parallax>}
     
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <div style={{height:"300px"}} className={classes.container}>
-          <p style={{color:"grey"}}>* available game rooms to be inserted here *</p>
-          {/*<ProductSection />
-          <TeamSection />
-          <WorkSection />*/}
+        <div style={{minHeight:"300px",paddingTop:"30px",paddingBottom:"45px"}} className={classes.container}>
+          <h3 style={{color:"grey"}}>Choose your <b>bet amout</b>:</h3> 
+          <br/>
+          <div>
+            {getButtonGenerator()}
+          </div>
+          <br/>
+          <p style={{color:"grey"}}>
+            In order to play a match against another player, simply click on any of the above buttons to join a match. 
+            The number inside the <i>parenthesis ()</i>  indicates how many players are currently waiting for an opponent 
+            for the given <b>bet amount</b>.
+          </p>
         </div>
       </div>
       <Footer />

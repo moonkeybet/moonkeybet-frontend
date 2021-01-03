@@ -29,7 +29,6 @@ export default function getUserData(){
     }
   })
   .then((response) => {
-    console.log("pubkey ",response.data.pubKey)
     AppState.setPublicKey(response.data.pubKey)
   });
 }
