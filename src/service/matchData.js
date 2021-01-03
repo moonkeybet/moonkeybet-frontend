@@ -10,7 +10,7 @@ export default function getUpdateMatchData(){
   }
   let matchDataArray = []
   for(let counter =0;counter<bettingAmountArray.length;++counter){
-    axios.get(serverUrl+"v1/match/available-matches?betAmount="+bettingAmountArray[counter],{
+    axios.get(serverUrl+"v1/match/available-matches?bettingAmount="+bettingAmountArray[counter],{
       mode:"cors",
       Accept: 'application/json',
       headers:{
@@ -20,8 +20,7 @@ export default function getUpdateMatchData(){
       }
     })
   .then((response) => {
-    matchDataArray.push(response.data)
-    // console.log("@@@ this is match data array at  " + counter, matchDataArray)
+    matchDataArray.push({id:counter,matchCounter:response.data.availableMatches})
     AppState.setAvailableMatches(matchDataArray)
   });
   }

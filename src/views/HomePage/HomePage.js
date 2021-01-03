@@ -26,6 +26,31 @@ const dashboardRoutes = [];
 const useStyles = makeStyles(styles);
 
 
+function getStaticButtons(balance){
+  let buttons = []
+
+  for(let counter=0;counter<bettingAmountArray.length;++counter){
+    let plural = "S"
+    let textString = `${bettingAmountArray[counter]} MOONKEY COIN`
+    let disabled = true
+    let color = null
+    if(counter >0){
+      textString+=plural
+    }
+
+    if(balance>=bettingAmountArray[counter]){
+      disabled = false
+      color = "danger"
+    }
+    let button = <Button color={color} key={counter} disabled={disabled} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>(0)</b></Button>
+
+
+    buttons.push(button)
+  }
+
+  return buttons
+}
+
 export default function HomePage(props) {
   AppState.updateMatchData()
 
@@ -36,7 +61,9 @@ export default function HomePage(props) {
   let userState = AppState.getUserState();
   let userDetails = AppState.getUserDetails();
   let matchData = AppState.getAvailableMatches()
-  // console.log("@@@ match data from homepage",matchData)
+  matchData.sort(function(a, b) {
+    return parseFloat(a.id) - parseFloat(b.id);
+  });
   function getButtonGenerator(){
     let buttons =[]
     let balance = 0
@@ -44,28 +71,31 @@ export default function HomePage(props) {
       balance = userDetails.balance
     }
 
-    for(let counter=0;counter<bettingAmountArray.length;++counter){
-      let plural = "S"
-      let textString = `${bettingAmountArray[counter]} MOONKEY COIN`
-      let disabled = true
-      let color = null
-      if(counter >0){
-        textString+=plural
+    if(matchData == null && matchData.length != bettingAmountArray.length){
+      buttons =  getStaticButtons(balance)
+    }else{
+      for(let counter=0;counter<bettingAmountArray.length;++counter){
+        let plural = "S"
+        let textString = `${bettingAmountArray[counter]} MOONKEY COIN`
+        let disabled = true
+        let color = null
+        if(counter >0){
+          textString+=plural
+        }
+    
+        if(balance>=bettingAmountArray[counter]){
+          disabled = false
+          color = "danger"
+        }
+        let button = <Button color={color} key={counter} disabled={disabled} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>({matchData[counter].matchCounter})</b></Button>
+        buttons.push(button)
       }
-
-      if(balance>=bettingAmountArray[counter]){
-        disabled = false
-        color = "danger"
-      }
-      let button = <Button color={color} key={counter} disabled={disabled} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>(0)</b></Button>
-
-
-      buttons.push(button)
     }
+      
     return buttons
   }
 
-let introText = <><div className={classes.container}>
+  let introText = <><div className={classes.container}>
                 <GridContainer>
                   <GridItem xs={12} sm={12} md={6}>
                     <h1 className={classes.title}>Test your skills against other players around the world !</h1>
