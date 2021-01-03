@@ -18,24 +18,52 @@ import { Link } from "react-router-dom";
 
 import styles from "assets/jss/material-kit-react/views/homePage.js";
 
-// Sections for this page
-import ProductSection from "./Sections/ProductSection.js";
-import TeamSection from "./Sections/TeamSection.js";
-import WorkSection from "./Sections/WorkSection.js";
-
 import AppState from "../../service/appState.js";
+import bettingAmountArray from "../../service/betAmountsConstant.js";
 
 const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 
+
 export default function HomePage(props) {
+  AppState.updateMatchData()
+
   const classes = useStyles();
   const { ...rest } = props;
 
   AppState.updateUserDetails();
   let userState = AppState.getUserState();
-  
+  let userDetails = AppState.getUserDetails();
+  let matchData = AppState.getAvailableMatches()
+  // console.log("@@@ match data from homepage",matchData)
+  function getButtonGenerator(){
+    let buttons =[]
+    let balance = 0
+    if(userDetails!= null && userDetails.balance>0){
+      balance = userDetails.balance
+    }
+
+    for(let counter=0;counter<bettingAmountArray.length;++counter){
+      let plural = "S"
+      let textString = `${bettingAmountArray[counter]} MOONKEY COIN`
+      let disabled = true
+      let color = null
+      if(counter >0){
+        textString+=plural
+      }
+
+      if(balance>=bettingAmountArray[counter]){
+        disabled = false
+        color = "danger"
+      }
+      let button = <Button color={color} key={counter} disabled={disabled} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>(0)</b></Button>
+
+
+      buttons.push(button)
+    }
+    return buttons
+  }
 
 let introText = <><div className={classes.container}>
                 <GridContainer>
@@ -94,11 +122,18 @@ let introText = <><div className={classes.container}>
             </Parallax>}
     
       <div className={classNames(classes.main, classes.mainRaised)}>
-        <div style={{height:"300px"}} className={classes.container}>
-          <p style={{color:"grey"}}>* available game rooms to be inserted here *</p>
-          {/*<ProductSection />
-          <TeamSection />
-          <WorkSection />*/}
+        <div style={{minHeight:"300px",paddingTop:"30px",paddingBottom:"45px"}} className={classes.container}>
+          <h3 style={{color:"grey"}}>Choose your <b>bet amout</b>:</h3> 
+          <br/>
+          <div>
+            {getButtonGenerator()}
+          </div>
+          <br/>
+          <p style={{color:"grey"}}>
+            In order to play a match against another player, simply click on any of the above buttons to join a match. 
+            The number inside the <i>parenthesis ( ) </i>  shows how many players are currently waiting for an opponent 
+            for the given <b>bet amount</b>.
+          </p>
         </div>
       </div>
       <Footer />
