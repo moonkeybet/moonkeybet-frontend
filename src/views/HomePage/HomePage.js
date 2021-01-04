@@ -65,9 +65,11 @@ export default function HomePage(props) {
     matchData.sort(function(a, b) {
       return parseFloat(a.id) - parseFloat(b.id);
     });
+  }else{
+    matchData = []
   }
 
-  
+
   function getButtonGenerator(){
     let buttons =[]
     let balance = 0
@@ -75,7 +77,7 @@ export default function HomePage(props) {
       balance = userDetails.balance
     }
 
-    if(matchData == null && matchData.length != bettingAmountArray.length){
+    if(matchData == null || matchData.length != bettingAmountArray.length){
       buttons =  getStaticButtons(balance)
     }else{
       for(let counter=0;counter<bettingAmountArray.length;++counter){
