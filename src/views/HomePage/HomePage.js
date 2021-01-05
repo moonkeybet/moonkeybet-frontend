@@ -20,6 +20,7 @@ import styles from "assets/jss/material-kit-react/views/homePage.js";
 
 import AppState from "../../service/appState.js";
 import bettingAmountArray from "../../service/betAmountsConstant.js";
+import joinOrCreateMatch from "../../service/pvpMatchData.js";
 
 const dashboardRoutes = [];
 
@@ -85,6 +86,9 @@ export default function HomePage(props) {
         let textString = `${bettingAmountArray[counter]} MOONKEY COIN`
         let disabled = true
         let color = null
+        let hasMatches = matchData[counter].matchCounter >0
+        let clickEvent = null
+        let button = null
         if(counter >0){
           textString+=plural
         }
@@ -93,7 +97,13 @@ export default function HomePage(props) {
           disabled = false
           color = "danger"
         }
-        let button = <Button color={color} key={counter} disabled={disabled} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>({matchData[counter].matchCounter})</b></Button>
+        if(hasMatches){
+         button = <Button onClick={()=>joinOrCreateMatch(false,bettingAmountArray[counter])} color={color} key={counter} disabled={disabled} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>({matchData[counter].matchCounter})</b></Button>
+
+        }else{
+         button = <Button onClick={()=>joinOrCreateMatch(true,bettingAmountArray[counter])} color={color} key={counter} disabled={disabled} style={{marginRight:"15px",width:"180px"}}>{textString} &nbsp;<b>({matchData[counter].matchCounter})</b></Button>
+
+        }
         buttons.push(button)
       }
     }
