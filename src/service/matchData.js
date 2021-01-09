@@ -9,6 +9,7 @@ export default function getUpdateMatchData(){
     token = AppState.getSessionToken().token
   }
   let matchDataArray = []
+  let tempObject 
   for(let counter =0;counter<bettingAmountArray.length;++counter){
     axios.get(serverUrl+"v1/match/available-matches?bettingAmount="+bettingAmountArray[counter],{
       mode:"cors",
@@ -19,10 +20,15 @@ export default function getUpdateMatchData(){
         'Content-Type': 'application/json'
       }
     })
-  .then((response) => {
-    matchDataArray.push({id:counter,matchCounter:response.data.availableMatches})
-    AppState.setAvailableMatches(matchDataArray)
-  });
+    .then((response) => {
+      tempObject ={id:counter,matchCounter:response.data.availableMatches}
+    }).catch(()=>{
+      tempObject ={id:counter,matchCounter:0}
+    })
+    .finally(()=>{
+      matchDataArray.push(tempObject)
+      AppState.setAvailableMatches(matchDataArray)
+    });
   }
 
 }
